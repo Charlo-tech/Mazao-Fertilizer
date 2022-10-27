@@ -1,7 +1,7 @@
     import * as africastalking from 'africastalking';
     //requirements
     var Pusher = require('pusher')
-    var credentials = require('./cred.js')
+    var credentials = require('./cred')
     var africastalking = require('africastalking')(credentials.AT)
     var cors = require('cors')
     var bodyParser = require('body-parser')
