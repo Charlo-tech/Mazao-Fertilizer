@@ -1,0 +1,67 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #333;
+    background: #f5f5f5;
+
+}
+.container-fluid{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+header{
+    height: 160px;
+    margin: 0px;
+    background-color: rgb(94, 240, 75);
+    padding: 40px;
+}
+header h1{
+    margin: 0px;
+}
+header h4{
+    color: rgb(17, 17, 17);
+}
+.completeOrder{
+    display: none;
+}
+.closeicon{
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+.closeicon:hover{
+    opacity: 0.5;
+}
+.order-card{
+    background-color: rgb(236, 141, 17);
+    margin: 50px;
+    border-radius: 10px;
+    width: 20%;
+    margin-right:0px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+ .order-card h3{
+    margin: 0px;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;    
+ }
+
+ footer{
+    background-color: rgb(94, 240, 75);
+    height: auto;
+    margin: 0px;
+    padding: 40px;
+    text-align: center;
+    color: rgb(17, 17, 17);
+    font-size: 20px;
+    font-weight: bold;
+ }
