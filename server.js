@@ -1,18 +1,18 @@
-    import * as africastalking from 'africastalking';
+    //import * as africastalking from 'africastalking';
     //requirements
-    var Pusher = require('pusher')
-    var credentials = require('./cred')
-    var africastalking = require('africastalking')(credentials.AT)
+    const Pusher = require('pusher')
+    const credentials = require('./cred')
+    //var africastalking = require('africastalking')(credentials.AT)
     var cors = require('cors')
     var bodyParser = require('body-parser')
-    var express = require('express')
-    var path = require('path')
+    const express = require('express')
+    const path = require('path')
 
     //modules
-    var express = require('express')
+    //var express = require('express')
     var app = express()
     var port = 3000
-    var path = require('path')
+    //var path = require('path')
 
     var pusher = new Pusher(credentials.pusher)
     app.use(cors())
@@ -27,7 +27,7 @@
 
     
     //AT
-    var webURL = 'https://www.nation.co.ke/news/Govt-distributes-subsidised-fertiliser-to-farmers/1056-4375856-aop5yt/index.html'
+    var webURL = 'https://bit.ly/Fertilizer12'
     var welcomeMsg = `CON Hello and welcome to Mazao-Fertilizer.
     Have your Fertilizer delivered quick and easy!
     Please find more info ${webURL}
@@ -35,7 +35,8 @@
     var orderDetails = {
         name: "",
         description: "",
-        address: "",
+        county: "",
+        constituency: "",
         telephone: "",
         open: true
     }
@@ -51,22 +52,25 @@
         var text = req.body.text
         var textValue = text.split('*').length
     
-        if(text === ''){
+        if(text == ''){
             message = welcomeMsg
-        }else if(textValue === 1){
+        }else if(textValue == 1){
             message = "CON How many bags do you need?"
             orderDetails.name = text;
-        }else if(textValue === 2){
-            message = "CON Where do we deliver it?"
+        }else if(textValue == 2){
+            message = "CON Where do we deliver it(county)?"
             orderDetails.description = text.split('*')[1];
-        }else if(textValue === 3){
+        }else if(textValue == 3){
+            message = "CON Where do we deliver it(constituency)?"
+            orderDetails.description = text.split('*')[2];
+        }else if(textValue == 4){
             message = "CON What's your telephone number?"
-            orderDetails.address = text.split('*')[2];
-        }else if(textValue === 4){
+            orderDetails.address = text.split('*')[3];
+        }else if(textValue == 5){
             message = `CON Would you like to place this order?
             1. Yes
             2. No`
-            lastData = text.split('*')[3];
+            lastData = text.split('*')[4];
         }else{
             message = `END Thanks for your order
             Our team is workin on it ASAP`
@@ -77,14 +81,15 @@
         res.send(message, 200);
     
         console.log(orderDetails)
-        if(orderDetails.name != "" && orderDetails.address != '' && orderDetails.description != '' && orderDetails.telephone != ''){
+        if(orderDetails.name != "" && orderDetails.county != '' && orderDetails.constituency != '' && orderDetails.description != '' && orderDetails.telephone != ''){
             pusher.trigger('orders', 'customerOrder', orderDetails)
         }
         if(orderDetails.telephone != ''){
             //reset data
         orderDetails.name= ""
         orderDetails.description= ""
-        orderDetails.address= ""
+        orderDetails.county= ""
+        orderDetails.constituency= ""
         orderDetails.telephone= ""
         }
     

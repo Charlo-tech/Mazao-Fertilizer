@@ -3,11 +3,11 @@ new Vue({
     data:{
         title: "Mazao Fertilizer Dashboard",
         orders:[
-            {name:"Riggy G", description:"2 Bags", address:"Muranga", telephone:"0712345678", open:true},
-            {name:"Lebron James", description:"1 Bag", address:"Homa Bay", telephone:"0709876543", open:true},
-            {name:"Mary Jane", description:"5 Bags", address:"Nakuru", telephone:"0734567890", open:true},
-            {name:"Africas Talking", description:"6 Bags", address:"Lavington", telephone:"0732547698", open:true},
-            {name:"Tupac Shakur", description:"7 Bags", address:"Mombasa", telephone:"0112365789", open:true}
+            {name:"Riggy G", description:"2 Bags", county:"Muranga", constituency:"Kiharu", telephone:"0712345678", open:true},
+            {name:"Lebron James", description:"1 Bag", county:"Homa Bay", constituency:"Suba", telephone:"0709876543", open:true},
+            {name:"Mary Jane", description:"5 Bags", county:"Nakuru", constituency:"Bahati", telephone:"0734567890", open:true},
+            {name:"Africas Talking", description:"6 Bags", county:"Nairobi", constituency:"Westlands", telephone:"0732547698", open:true},
+            {name:"Tupac Shakur", description:"7 Bags", county:"Mombasa", constituency:"Nyali", telephone:"0112365789", open:true}
         ]
     },
     created(){
@@ -15,6 +15,7 @@ new Vue({
             cluster:'PusherCluster',
             encrypted:true
         })
+        console.log('data',pusher);
         var channel = pusher.subscribe('orders')
         channel.bind('customerOrder', (data) => {
             console.log(data)
